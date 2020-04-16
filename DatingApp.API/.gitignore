@@ -1,0 +1,4 @@
+.vccode
+bin
+obj
+*.db
