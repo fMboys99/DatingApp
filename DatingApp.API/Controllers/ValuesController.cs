@@ -6,18 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using DatingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DatingApp.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
 
-    public class WeatherForecastController : ControllerBase
+    public class ValuesController : ControllerBase
     {
 
         private readonly DataContext _context;
 
-        public WeatherForecastController(DataContext context)
+        public ValuesController(DataContext context)
         {
             _context = context;
         }
@@ -27,12 +29,12 @@ namespace DatingApp.API.Controllers
             "fMboys", "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        // private readonly ILogger<WeatherForecastController> _logger;
+            // private readonly ILogger<WeatherForecastController> _logger;
 
-        // public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        // {
-        //     _logger = logger;
-        // }
+            // public WeatherForecastController(ILogger<WeatherForecastController> logger)
+            // {
+            //     _logger = logger;
+            // }
 
         [HttpGet]
         public async Task<IActionResult> GetValues()
@@ -54,6 +56,7 @@ namespace DatingApp.API.Controllers
         //     // .ToArray();
         // }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id) 
         {
