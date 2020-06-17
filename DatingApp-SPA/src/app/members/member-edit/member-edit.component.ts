@@ -1,10 +1,10 @@
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/_models/user';
+import { AlertifyService } from './../../_services/alertify.service';
 import { AuthService } from './../../_services/auth.service';
 import { UserService } from './../../_services/user.service';
-import { AlertifyService } from './../../_services/alertify.service';
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { User } from 'src/app/_models/user';
-import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-member-edit',
@@ -14,6 +14,7 @@ import { NgForm } from '@angular/forms';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm: NgForm;
   user: User;
+  photoUrl: string;
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
     if (this.editForm.dirty) {
@@ -29,6 +30,7 @@ export class MemberEditComponent implements OnInit {
       // tslint:disable-next-line: no-string-literal
       this.user = data['user'];
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser() {
@@ -38,6 +40,10 @@ export class MemberEditComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
   }
 
 }
