@@ -12,6 +12,7 @@ import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TabsModule} from 'ngx-bootstrap/tabs';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
@@ -31,6 +32,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { FileUploadModule } from 'ng2-file-upload';
+import { from } from 'rxjs';
 
 
 export function tokenGetter() {
@@ -56,7 +58,9 @@ export function tokenGetter() {
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
+      ReactiveFormsModule,
       BsDropdownModule.forRoot(),
+      BsDatepickerModule.forRoot(),
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
