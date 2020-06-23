@@ -17,6 +17,7 @@ import { TabsModule} from 'ngx-bootstrap/tabs';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule} from '@angular/common/http';
@@ -64,6 +65,7 @@ export function tokenGetter() {
       TabsModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule,
+      TimeagoModule.forRoot(),
       FileUploadModule,
       JwtModule.forRoot({
          config: {
